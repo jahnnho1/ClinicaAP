@@ -1,0 +1,134 @@
+{% extends 'backend/base/index.html.twig' %}
+
+
+{% block stylesheets %}
+
+    <link type="text/css" href="{{ asset('backend/plugins/comentario/editor.css')}}" rel="stylesheet"/>
+    <link href="{{ asset('backend/plugins/jquery-file-upload/blueimp-gallery/blueimp-gallery.min.css" rel="stylesheet')}}" />
+    <link href="{{ asset('backend/plugins/jquery-file-upload/css/jquery.fileupload.css" rel="stylesheet')}}" />
+    <link href="{{ asset('backend/plugins/jquery-file-upload/css/jquery.fileupload-ui.css" rel="stylesheet')}}" />    
+{% endblock %}
+
+
+
+
+
+{% block contenido %}
+
+
+    {% include 'backend/includes/alert.messages.html.twig'  %}
+
+    <!-- begin breadcrumb -->
+    <ol class="breadcrumb pull-right">
+        <li><a href="javascript:;">Home</a></li>
+        <li class="active">Dashboard</li>
+    </ol>
+    <!-- end breadcrumb -->
+    <!-- begin page-header -->
+    <h1 class="page-header">Crear Publicacion <small> </small></h1>
+
+
+
+
+   <form id="fileupload" action="{{ path('backend_crearPublicacion_ejecutar') }}" method="POST" enctype="multipart/form-data">
+
+
+        <div class="col-md-12 ui-sortable">
+            <div class="panel panel-inverse">
+                <div class="panel-heading">
+                    <div class="panel-heading-btn">
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+                    </div>
+                    <h4 class="panel-title">Edite el mensaje</h4>
+                </div>
+                <div class="panel-body">
+
+                    
+                    
+                    
+                    <h4 class="m-t-0">Titulo</h4>
+                    <input class="form-control" type="text" placeholder="Titulo" name="blogTitulo">
+                    
+                     <h4 class="m-t-0">Tipo de publicacion</h4>
+                    <select class="form-control input-sm" name="blogTipo">
+                          {% for tp in tipoPublicacion %} 
+                                <option value="{{tp.tpuId }}">{{ tp.tpuNombre}}</option>
+                          {% endfor %}
+                    </select>
+                    
+                    <h4 class="m-t-0">Breve descripcion</h4>
+                    <textarea class="form-control" rows="2" id="comment" name="blogBreveComentario" maxlength="160" placeholder="Un maximo de 160 Caracteres">
+                  
+
+                    </textarea>
+                    
+                    
+                    <h4 class="m-t-0">Descripcion</h4>
+                    <textarea class="form-control" rows="5" id="comment" name="blogComentario">
+                  
+
+                    </textarea>
+
+
+                    
+                    
+         
+                    <div class="row fileupload-buttonbar pull-right">
+                            <div class="col-md-7">
+                                <span class="btn btn-success fileinput-button">
+                                    <i class="fa fa-plus"></i>
+                                    <span>Agregar Imagen...</span>
+                                    <input type="file" name="files" multiple>
+                                </span>
+                            </div>
+                    </div>
+                        <!-- The table listing the files available for upload/download -->
+         
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+
+
+
+                </div>
+                <div class="panel-footer">
+                    <input id="btAgregar" type="submit" class="btn btn-success" value="Publicar entrada">                
+                </div>
+            </div>                               
+        </div>
+
+    </form>
+
+
+{% endblock %}
+
+
+{% block javascripts %}
+
+    
+    <script src="{{ asset('backend/plugins/jquery-file-upload/js/vendor/jquery.ui.widget.js')}}"></script>
+    <script src="{{ asset('backend/plugins/jquery-file-upload/js/vendor/tmpl.min.js')}}"></script>
+    <script src="{{ asset('backend/plugins/jquery-file-upload/js/vendor/load-image.min.js')}}"></script>
+    <script src="{{ asset('backend/plugins/jquery-file-upload/js/vendor/canvas-to-blob.min.js')}}"></script>
+    <script src="{{ asset('backend/plugins/jquery-file-upload/blueimp-gallery/jquery.blueimp-gallery.min.js')}}"></script>
+    <script src="{{ asset('backend/plugins/jquery-file-upload/js/jquery.iframe-transport.js')}}"></script>
+    <script src="{{ asset('backend/plugins/jquery-file-upload/js/jquery.fileupload.js')}}"></script>
+    <script src="{{ asset('backend/plugins/jquery-file-upload/js/jquery.fileupload-process.js')}}"></script>
+    <script src="{{ asset('backend/plugins/jquery-file-upload/js/jquery.fileupload-image.js')}}"></script>
+    <script src="{{ asset('backend/plugins/jquery-file-upload/js/jquery.fileupload-audio.js')}}"></script>
+    <script src="{{ asset('backend/plugins/jquery-file-upload/js/jquery.fileupload-video.js')}}"></script>
+    <script src="{{ asset('backend/plugins/jquery-file-upload/js/jquery.fileupload-validate.js')}}"></script>
+    <script src="{{ asset('backend/plugins/jquery-file-upload/js/jquery.fileupload-ui.js')}}"></script>    
+    <script src="{{ asset('backend/js/form-multiple-upload.demo.min.js')}}"></script>
+    
+
+{% endblock %}

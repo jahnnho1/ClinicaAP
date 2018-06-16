@@ -1,0 +1,27 @@
+{% extends 'frontend/base.html.twig' %}
+
+{% block stylesheets %}
+{% endblock %}
+
+{% block body %}
+    <div class="top"><h1>Crecimiento Neonatal</h1></div>   
+        <form>
+            <div class="contentform">
+              
+                <!--h3>Para texto secundario si fuese necesario</h3-->
+                <div>
+                    {% for label, flashes in app.session.flashbag.all %}
+                        {% for flash in flashes %}
+                            
+                                {% autoescape %}{{ flash|raw}}{% endautoescape %}
+                           
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            </div>
+        </form>	
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}
+

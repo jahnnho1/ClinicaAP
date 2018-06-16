@@ -1,0 +1,11 @@
+backend:
+    resource: "@backendBundle/Resources/config/routing.yml"
+    prefix:   /
+
+clinica:
+    resource: "@clinicaBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation

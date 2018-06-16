@@ -1,0 +1,4 @@
+services:
+#    clinica.example:
+#        class: clinicaBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

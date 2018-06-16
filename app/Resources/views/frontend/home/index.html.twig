@@ -1,0 +1,345 @@
+{% extends 'frontend/base/index.html.twig' %}
+
+
+
+{% block stylesheets %}
+
+
+    <link rel="stylesheet" href="{{ asset('assets/plugins/font-awesome/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/parallax-slider/css/parallax-slider.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/owl-carousel/owl-carousel/owl.carousel.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/blog/blog.style.css')}}">
+
+
+{% endblock %}
+
+
+{% block slaider %}
+
+    {% include 'frontend/includes/slaider.html.twig'  %}    
+{% endblock %}
+
+
+
+{% block contenido %}
+
+    <!--=== Container Part ===-->
+    <div class="container margin-bottom-40">
+        <div class="row">
+            <!-- Main Content -->
+            <div class="col-md-9">
+                <!-- Tab v4 -->
+                <div class="tab-v4 margin-bottom-40">
+                    <!-- Tab Heading -->
+                    <div class="tab-heading">
+                        <h2>INNOVACION Y AVANCES</h2>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="home active">
+                                <a href="#tab-v4-a1" role="tab" data-toggle="tab"><strong>Innovacion y Avances</strong></a>
+                            </li>
+                            <li>
+                                <a href="#tab-v4-a2" role="tab" data-toggle="tab"><strong>Vive Saludable</strong></a>
+                            </li>
+                     
+                        </ul>
+                    </div>
+                    <!-- End Latest News -->
+
+                    <!-- Tab Content -->
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active" id="tab-v4-a1">
+                            <div class="row">
+                                <div class="col-sm-7">
+                                    <!-- Blog Grid -->
+                                    <div class="blog-grid sm-margin-bottom-40">
+                                        <img class="img-responsive" src="{{ asset(noticiaImportante.recuperarImagenBlog())}}" alt="">
+                                        <h3><a href="{{ path('clinica_publicacion_blog',{blogId:noticiaImportante.getBloId})}}">{{noticiaImportante.getBloTitulo}}</a></h3>
+                                        <ul class="blog-grid-info">
+                                            <li>{{noticiaImportante.getBloAutor}}</li>
+                                            <li>{{ noticiaImportante.mostrarFechaTime()}}</li>
+                                            <li>{{ noticiaImportante.getTipoPublicacion.getTpuNombre}}</li>
+                                            <li><a href="{{ path('clinica_publicacion_blog',{blogId:noticiaImportante.getBloId})}}"><i class="fa fa-comments"></i> {{ noticiaImportante.cantidadComentarios()}}</a> </li>
+                                           <!--  <li><a href="#"><i class="fa fa-comments"></i> 0</a></li> -->
+                                        </ul>
+                                        <p>{{noticiaImportante.getBloBreveDescripcion}} ...</p>
+                                        <a class="r-more" href="{{ path('clinica_publicacion_blog',{blogId:noticiaImportante.getBloId})}}">Leer mas</a>
+                                    </div>
+                                    <!-- End Blog Grid -->
+                                </div>
+
+                                <div class="col-sm-5">
+                                    <!-- Blog Thumb -->
+                     {% set continue = true %}               
+                     {% for nim in noticiasImportantes if continue == true  %}    
+                          {% if loop.index > 4 %} 
+                                {% set continue = false %}
+                          {% endif %}    
+                          {% if nim.bloId != noticiaImportante.getBloId %}
+                                <div class="blog-thumb margin-bottom-20">
+                                    <div class="blog-thumb-hover">
+                                        <img src="{{ asset(nim.recuperarImagenBlog())}}" alt="">
+                                        <a class="hover-grad" href="{{ path('clinica_publicacion_blog',{blogId:nim.getBloId})}}"><i class="fa fa-video-camera"></i></a>
+                                    </div>
+                                    <div class="blog-thumb-desc">
+                                        <h3><a href="{{ path('clinica_publicacion_blog',{blogId:nim.getBloId})}}">{{nim.bloTitulo}}</a></h3>
+                                        <ul class="blog-thumb-info">
+                                            <li>{{ nim.mostrarFechaTime()}}</li>
+                                            <li><a href="{{ path('clinica_publicacion_blog',{blogId:nim.getBloId})}}"><i class="fa fa-comments"></i> {{ nim.cantidadComentarios()}}</a> </li>
+                                         <!--   <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>  -->
+                                        </ul>
+                                    </div>
+                                </div>
+                           {% endif %} 
+                           
+                    {% endfor %}                     
+                                            
+                                            
+                                            
+                                            
+                                            
+                                    <!-- End Blog Thumb -->
+
+                                    <!-- End Blog Thumb -->
+
+                                    <!-- End Blog Thumb -->
+                                </div>
+                            </div><!--/end row-->
+                        </div>
+                        <div class="tab-pane fade" id="tab-v4-a2">
+                            <div class="row">
+                                <div class="col-sm-7">
+                                    <!-- Blog Grid -->
+                                    <div class="blog-grid sm-margin-bottom-40">
+                                        <img class="img-responsive" src="{{ asset(noticiaImportante2.recuperarImagenBlog())}}" alt="">
+                                        <h3><a href="{{ path('clinica_publicacion_blog',{blogId:noticiaImportante2.getBloId})}}">{{noticiaImportante2.getBloTitulo}}</a></h3>
+                                        <ul class="blog-grid-info">
+                                            <li>{{noticiaImportante2.getBloAutor}}</li>
+                                            <li>{{ noticiaImportante2.mostrarFechaTime()}}</li>
+                                            <li>{{ noticiaImportante2.getTipoPublicacion.getTpuNombre}}</li>
+                                        </ul>
+                                        <p>{{noticiaImportante.getBloBreveDescripcion}} ...</p>
+                                        <a class="r-more" href="{{ path('clinica_publicacion_blog',{blogId:noticiaImportante2.getBloId})}}">Leer mas</a>
+                                    </div>
+                                    <!-- End Blog Grid -->
+                                </div>
+
+                                <div class="col-sm-5">
+                                    <!-- Blog Thumb -->
+
+
+
+                     {% set continue2 = true %}               
+                     {% for nim in noticiasImportantes2 if continue2 == true  %}    
+                          {% if loop.index > 4 %} 
+                                {% set continue2 = false %}
+                          {% endif %}    
+                          {% if nim.bloId != noticiaImportante2.getBloId %}
+                                    <div class="blog-thumb">
+                                        <div class="blog-thumb-hover">
+                                            <img src="{{ asset(nim.recuperarImagenBlog())}}" alt="">
+                                            <a class="hover-grad" href="{{ path('clinica_publicacion_blog',{blogId:nim.getBloId})}}"><i class="fa fa-volume-up"></i></a>
+                                        </div>
+                                        <div class="blog-thumb-desc">
+                                            <h3><a href="{{ path('clinica_publicacion_blog',{blogId:nim.getBloId})}}">{{nim.bloTitulo}}</a></h3>
+                                            <ul class="blog-thumb-info">
+                                                <li>{{ nim.mostrarFechaTime()}}</li>
+                                                <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                            {% endif %} 
+                           
+                    {% endfor %}                             
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                    <!-- End Blog Thumb -->
+                                </div>
+                            </div><!--/end row-->
+                        </div>
+
+
+                    </div>
+                    <!-- End Tab Content -->
+                </div>
+
+
+
+
+                <!-- End Tab v4 -->
+
+                <!-- Blog Carousel Heading -->
+                <div class="blog-cars-heading">
+                    <h2>Noticias recientes</h2>
+                    <div class="owl-navigation">
+                        <div class="customNavigation">
+                            <a class="owl-btn prev-v3"><i class="fa fa-angle-left"></i></a>
+                            <a class="owl-btn next-v3"><i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div><!--/navigation-->
+                </div>
+                <!-- End Blog Carousel Heading -->
+
+                <!-- Blog Carousel -->
+                <div class="blog-carousel margin-bottom-50">
+                    <!-- Blog Grid -->
+                    <div class="item">
+                        <div class="row">
+                            <div class="col-sm-5 sm-margin-bottom-20">
+                                <img class="img-responsive" src="{{ asset(noticiaPrincipal.recuperarImagenBlog())}}" alt="">
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="blog-grid">
+                                    <h3><a href="{{ path('clinica_publicacion_blog',{blogId:noticiaPrincipal.getBloId})}}">{{noticiaPrincipal.getBloTitulo}}</a></h3>
+                                    <ul class="blog-grid-info">
+                                        <li>{{noticiaPrincipal.getBloAutor}}</li>
+                                        <li>{{ noticiaPrincipal.mostrarFechaTime()}} </li>
+                                        <li>{{ noticiaPrincipal.getTipoPublicacion.getTpuNombre}}</li>
+                                        <li><a href="{{ path('clinica_publicacion_blog',{blogId:noticiaPrincipal.getBloId})}}"><i class="fa fa-comments"></i> {{ noticiaPrincipal.cantidadComentarios()}}</a> </li>
+
+                                    </ul>
+                                    <p>{{noticiaPrincipal.getBloBreveDescripcion}} ...</p>
+                                    <a class="r-more" href="{{ path('clinica_publicacion_blog',{blogId:noticiaPrincipal.getBloId})}}">Leer Mas</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Blog Grid -->
+
+                    <!-- Blog Grid -->
+
+                    <!-- End Blog Grid -->
+                </div>
+                <!-- End Blog Carousel -->
+
+
+                <!-- End Blog Grid -->
+
+
+                <!-- End Blog Thumb v4 -->
+
+                <!-- End Tab v4 -->
+
+                <!-- End Blog Grid -->
+
+                <!-- Pager v4
+                <ul class="pager pager-v4 md-margin-bottom-50">
+                        <li class="previous"><a class="rounded-3x" href="#">&larr; Older</a></li>
+                        <li class="page-amount">1 of 7</li>
+                        <li class="next"><a class="rounded-3x" href="#">Newer &rarr;</a></li>
+                </ul>
+                End Pager v4 -->
+            </div>
+            <!-- End Main Content -->
+
+            <!-- Right Sidebar -->
+            <div class="col-md-3">
+                <!-- Blog Thumb v3 -->
+                <div class="margin-bottom-50">
+                    <h2 class="title-v4">Actualidad</h2>
+
+                    <div class="blog-thumb-v3">
+                        <small><a href="#">Evan Bartlett</a></small>
+                        <h3><a href="#">Cameron's silence on defence is shameful</a></h3>
+                    </div>
+
+                    <hr class="hr-xs">
+
+                </div>
+                <!-- End Blog Thumb v3 -->
+
+                <!-- Social Shares -->
+                <div class="margin-bottom-50">
+                    <h2 class="title-v4">Redes Sociales</h2>
+                    <ul class="blog-social-shares">
+                        <li>
+                            <i class="rounded-x fb fa fa-facebook"></i>
+                            <a class="rounded-3x" href="#">Like</a>
+                            <span class="counter">31,702</span>
+                        </li>
+                        <li>
+                            <i class="rounded-x tw fa fa-twitter"></i>
+                            <a class="rounded-3x" href="#">Follow Us</a>
+                            <span class="counter">164,290</span>
+                        </li>
+                        <li>
+                            <i class="rounded-x gp fa fa-google-plus"></i>
+                            <a class="rounded-3x" href="#">Add to circle</a>
+                            <span class="counter">5,425,764</span>
+                        </li>
+                    </ul>
+                </div>
+                <!-- End Social Shares -->
+
+                <!-- Blog Thumb v2 -->
+                <div class="margin-bottom-50">
+                    <h2 class="title-v4">Campañas del Mes</h2>
+
+                    <div class="blog-thumb blog-thumb-circle margin-bottom-15">
+                        <div class="blog-thumb-hover">
+                            <img class="rounded-x" src="{{ asset('assets/img/blog/img1.jpg')}}" alt="">
+                            <a class="hover-grad" href="blog_single.html"><i class="fa fa-link"></i></a>
+                        </div>
+                        <div class="blog-thumb-desc">
+                            <h3><a href="blog_single.html">Misused words and how to use them correctly</a></h3>
+                            <ul class="blog-thumb-info">
+                                <li>Mar 6, 2015</li>
+                                <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- End Blog Thumb v2 -->
+
+
+
+                <!-- End Blog Carousel Heading -->
+
+
+
+                <!-- End Twitter Posts -->
+            </div>
+            <!-- End Right Sidebar -->
+        </div>
+    </div>
+
+
+
+
+
+
+
+{% endblock %}
+
+
+
+{% block javascripts %}
+
+
+    <script type="text/javascript" src="{{ asset('assets/plugins/parallax-slider/js/modernizr.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('assets/plugins/parallax-slider/js/jquery.cslider.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('assets/plugins/owl-carousel/owl-carousel/owl.carousel.js')}}"></script>    
+    <script src="{{ asset('assets/js/plugins/owl-carousel.js')}}"></script>
+    <script src="{{ asset('assets/js/plugins/style-switcher.js')}}"></script>
+    <script src="{{ asset('assets/js/plugins/parallax-slider.js')}}"></script>
+
+
+
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+
+            OwlCarousel.initOwlCarousel();
+            StyleSwitcher.initStyleSwitcher();
+            ParallaxSlider.initParallaxSlider();
+        });
+    </script>
+
+
+{% endblock %}  

@@ -1,0 +1,56 @@
+clinica_homepage:
+    path:     /index
+    defaults: { _controller: clinicaBundle:Home:index }
+    
+clinica_desconectar_usuario:    
+    path:     /Salir
+    defaults: { _controller: clinicaBundle:Usuario:salirUsuario }   
+    
+clinica_nosotros:
+    path:     /nosotros
+    defaults: { _controller: clinicaBundle:Home:nosotros }  
+    
+
+clinica_usuario_ingreso:
+    path:     /ingreso
+    defaults: { _controller: clinicaBundle:Usuario:ingreso }  
+    
+clinica_usuario_ingreso_validar:
+    path:     /ingreso/validar
+    defaults: { _controller: clinicaBundle:Usuario:ingresoValidar }    
+
+clinica_usuario_registro:
+    path:     /registro
+    defaults: { _controller: clinicaBundle:Usuario:registro }
+    
+clinica_usuario_registro_validar:
+    path:     /registro/validar
+    defaults: { _controller: clinicaBundle:Usuario:registroValidar }
+    
+clinica_publicacion_blog:
+    path:     /Blog/Publicacion/{blogId}
+    defaults: { _controller: clinicaBundle:Home:publicacionBlog }
+    
+clinica_publicacion_blog_registrar_post:
+    path:     /Blog/Publicacion/crear/post
+    defaults: { _controller: clinicaBundle:Home:publicacionBlogCrearPost }    
+    
+clinica_contacto:
+    path:     /home/contacto
+    defaults: { _controller: clinicaBundle:Usuario:contacto }  
+    
+clinica_contacto_Ejecutar:
+    path:     /home/contacto/Ejecutar
+    defaults: { _controller: clinicaBundle:Usuario:contactoEjecutar }  
+    
+clinica_login:
+    path:     /login
+    defaults: { _controller: clinicaBundle:Security:login }  
+    
+clinica_login_check:
+    path:     /login_check
+    defaults: { _controller: clinicaBundle:Security:loginCheck } 
+    
+clinica_logout:
+    path:     /logout
+ 

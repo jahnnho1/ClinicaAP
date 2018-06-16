@@ -1,0 +1,98 @@
+{% extends 'frontend/base/index.html.twig' %}
+
+
+
+{% block stylesheets %}
+
+
+    <link rel="stylesheet" href="{{ asset('assets/plugins/font-awesome/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/parallax-slider/css/parallax-slider.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/owl-carousel/owl-carousel/owl.carousel.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/blog/blog.style.css')}}">
+
+
+{% endblock %}
+
+
+{% block slaider %}
+
+   
+{% endblock %}
+
+
+
+{% block contenido %}
+
+
+
+			<div class="row">
+                            {% include 'frontend/includes/alert.messages.html.twig'  %}  
+				<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+                                    <form class="reg-page" action="{{path('clinica_login_check')}}" method="post">
+						
+                                        {% if error %}
+                                            <strong>{{ error.messageKey }} </strong>    
+                                        {% endif %}
+                                                <div class="reg-header">
+							<h2>Ingresa a tu cuenta</h2>
+						</div>
+
+						<div class="input-group margin-bottom-20">
+							<span class="input-group-addon"><i class="fa fa-user"></i></span>
+							<input name="usuarioRut" type="text" placeholder="Rut" class="form-control" required  value="{{last_username}}">
+						</div>
+						<div class="input-group margin-bottom-20">
+							<span class="input-group-addon"><i class="fa fa-lock"></i></span>
+							<input name="usuarioClave" type="password" placeholder="Clave" class="form-control">
+						</div>
+                                                
+                                                <input type="hidden" name="_target_path" value="clinica_homepage">
+                                                
+						<div class="row">
+							<div class="col-md-6 checkbox">
+								<label><input type="checkbox"> Mantener Acceso</label>
+							</div>
+							<div class="col-md-6">
+								<button class="btn-u pull-right" type="submit">Ingresar</button>
+							</div>
+						</div>
+
+						<hr>
+
+						<h4>Olvidaste tu contraseña ?</h4>
+						<p>no te preocupes, <a class="color-green" href="#">click aqui</a> para restablecer su contraseña.</p>
+                                                <p>Area Administrativa?, <a class="color-green" href="">click aqui</a>.</p>
+				 </form>
+				</div>
+			</div><!--/row-->
+
+
+
+
+{% endblock %}
+
+
+
+{% block javascripts %}
+
+
+    <script type="text/javascript" src="{{ asset('assets/plugins/parallax-slider/js/modernizr.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('assets/plugins/parallax-slider/js/jquery.cslider.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('assets/plugins/owl-carousel/owl-carousel/owl.carousel.js')}}"></script>    
+    <script src="{{ asset('assets/js/plugins/owl-carousel.js')}}"></script>
+    <script src="{{ asset('assets/js/plugins/style-switcher.js')}}"></script>
+    <script src="{{ asset('assets/js/plugins/parallax-slider.js')}}"></script>
+
+
+
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+
+            OwlCarousel.initOwlCarousel();
+            StyleSwitcher.initStyleSwitcher();
+            ParallaxSlider.initParallaxSlider();
+        });
+    </script>
+
+
+{% endblock %}  

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="es" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="es">
+    <!--<![endif]-->
+    <head>
+        <meta charset="utf-8" />
+        <title>Backend Cencosud Telegestión | Cambiar Contraseña</title>
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+        <meta content="" name="description" />
+        <meta content="" name="author" />
+
+        <!-- ================== BEGIN BASE CSS STYLE ================== -->
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+        <link href="{{ asset('backend/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css')}}" rel="stylesheet" />
+        <link href="{{ asset('backend/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" />
+        <link href="{{ asset('backend/plugins/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" />
+        <link href="{{ asset('backend/css/animate.min.css')}}" rel="stylesheet" />
+        <link href="{{ asset('backend/css/style.min.css')}}" rel="stylesheet" />
+        <link href="{{ asset('backend/css/style-responsive.min.css')}}" rel="stylesheet" />
+        <link href="{{ asset('backend/css/theme/red.css')}}" rel="stylesheet" id="theme" />
+        <!-- ================== END BASE CSS STYLE ================== -->
+
+        <!-- ================== BEGIN BASE JS ================== -->
+        <script src="{{ asset('backend/plugins/pace/pace.min.js')}}"></script>
+        <!-- ================== END BASE JS ================== -->
+    </head>
+    <body class="pace-top bg-white">
+        <!-- begin #page-loader -->
+	<div id="page-loader" class="fade in"><span class="spinner"></span></div>
+	<!-- end #page-loader -->
+	
+	<!-- begin #page-container -->
+	<div id="page-container" class="fade">
+	    <!-- begin register -->
+        <div class="register register-with-news-feed">
+            <!-- begin news-feed -->
+            <div class="news-feed">
+                <div class="news-image">
+                    <img src="{{ asset('backend/img/login-bg/bg-3.png') }}" alt="" />
+                </div>
+                <div class="news-caption">
+                    <h4 class="caption-title"><i class="fa fa-edit text-success"></i> Telegestión Cencosud</h4>
+                    <p>
+                        Cambiar tu contraseña
+                    </p>
+                </div>
+            </div>
+            <!-- end news-feed -->
+            <!-- begin right-content -->
+            <div class="right-content">
+                <!-- begin register-header -->
+                <h1 class="register-header">
+                    Cambiar Contraseña
+                    <small>
+                        {% for label, flashes in app.session.flashbag.all %}
+                            {% for flash in flashes %}
+
+                                    {% autoescape %}{{ flash|raw}}{% endautoescape %}
+
+                            {% endfor %}
+                        {% endfor %}
+                    </small>
+                </h1>
+                <!-- end register-header -->
+                <!-- begin register-content -->
+                <div class="register-content">
+                    <form method="POST" action="{{path}}" onsubmit="return validarClaves()" class="margin-bottom-0">
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"  />
+                        <input type="hidden" name="e" value="{{e}}"/>
+                        <input type="hidden" name="k" value="{{k}}"/>
+                        <label class="control-label">Nueva contraseña <span class="text-danger">*</span></label>
+                        <div class="row m-b-15">
+                            <div class="col-md-12">
+                                <input type="password" name="clave1" id="clave1" class="form-control" placeholder="Nueva contraseña" required />
+                            </div>
+                        </div>
+                        <label class="control-label">Re-ingrese nueva contraseña <span class="text-danger">*</span></label>
+                        <div class="row m-b-15">
+                            <div class="col-md-12">
+                                <input type="password" name="clave2" id="clave2" class="form-control" placeholder="Re-ingrese nueva contraseña" required />
+                            </div>
+                        </div> 
+                        <div class="register-buttons">
+                            <button type="submit" class="btn btn-primary btn-block btn-lg">Cambiar Contraseña</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- end register-content -->
+            </div>
+            <!-- end right-content -->
+        </div>
+        <!-- end register -->
+        
+       
+	</div>
+	<!-- end page container -->
+
+        <!-- ================== BEGIN BASE JS ================== -->
+        <script src="{{ asset('backend/plugins/jquery/jquery-1.9.1.min.js')}}"></script>
+        <script src="{{ asset('backend/plugins/jquery/jquery-migrate-1.1.0.min.js')}}"></script>
+        <script src="{{ asset('backend/plugins/jquery-ui/ui/minified/jquery-ui.min.js')}}"></script>
+        <script src="{{ asset('backend/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
+        <!--[if lt IE 9]>
+                <script src="{{ asset('backend/crossbrowserjs/html5shiv.js')}}"></script>
+                <script src="{{ asset('backend/crossbrowserjs/respond.min.js')}}"></script>
+                <script src="{{ asset('backend/crossbrowserjs/excanvas.min.js')}}"></script>
+        <![endif]-->
+        <script src="{{ asset('backend/plugins/slimscroll/jquery.slimscroll.min.js')}}"></script>
+        <script src="{{ asset('backend/plugins/jquery-cookie/jquery.cookie.js')}}"></script>
+        <!-- ================== END BASE JS ================== -->
+
+        <!-- ================== BEGIN PAGE LEVEL JS ================== -->
+        <script src="{{ asset('backend/js/apps.js')}}"></script>
+        <!-- ================== END PAGE LEVEL JS ================== -->
+
+        <script>
+            $(document).ready(function () {
+                App.init();
+            });
+            
+            
+            function validarClaves(){
+                var msgError = '';
+
+                if($("#clave1").val().length < 5 ||  $("#clave1").val().length > 10 || $("#clave2").val().length < 5 ||  $("#clave2").val().length > 10 ){        
+                    msgError = msgError + '-Sus contraseñas son inválidas, deben ser de almenos 5 caracteres.<br>';
+                }
+
+
+                if($("#clave1").val() != $("#clave2").val()){
+                    msgError = msgError + '-Sus contraseñas son inválidas, deben ser iguales.<br>';
+                 }
+
+                if(msgError != ""){
+                    alert(msgError);
+                    return false;
+                }
+                else
+                    return true;     
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,105 @@
+{% extends 'frontend/base/index.html.twig' %}
+
+
+
+{% block stylesheets %}
+
+
+    <link rel="stylesheet" href="{{ asset('assets/plugins/font-awesome/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/parallax-slider/css/parallax-slider.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/owl-carousel/owl-carousel/owl.carousel.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/blog/blog.style.css')}}">
+
+
+{% endblock %}
+
+
+{% block slaider %}
+
+   
+{% endblock %}
+
+
+
+{% block contenido %}
+
+
+			<div class="row">
+                            {% include 'frontend/includes/alert.messages.html.twig'  %}  
+				<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                                    <form class="reg-page" action="{{path('clinica_usuario_registro_validar')}}" method="post">
+						<div class="reg-header">
+							<h2 class="text-center" >Registrar nueva cuenta</h2>
+							<p>Ya estas registrado? Haga click en <a href="{{path('clinica_usuario_ingreso')}}" class="color-green">Iniciar sesion</a> en su cuenta.</p>
+						</div>
+
+						<label>Nombre</label>
+						<input type="text" name="usuarioNombre" class="form-control margin-bottom-20" required>
+
+						<label>Apellido</label>
+						<input type="text" name="usuarioApellido" class="form-control margin-bottom-20" required>                                         
+                                                
+						<label>Rut<span class="color-red">*</span></label>
+                                                <input type="text" name="usuarioRut" class="form-control margin-bottom-20" required >
+                                                
+                                                <label>Direccion de correo <span class="color-red">*</span></label>
+                                                <input type="email" name="usuarioCorreo" class="form-control margin-bottom-20 " required>
+                                                
+						<div class="row">
+							<div class="col-sm-6">
+								<label>Contraseña <span class="color-red">*</span></label>
+								<input type="password" name="usuarioClave1" class="form-control margin-bottom-20" required>
+							</div>
+							<div class="col-sm-6">
+								<label>Confirme Contraseña <span class="color-red">*</span></label>
+								<input type="password" name="usuarioClave2" class="form-control margin-bottom-20" required>
+							</div>
+						</div>
+
+
+						<div class="row">
+							<div class="col-lg-6 checkbox">
+								<label>
+									<input type="checkbox" name="usuarioTerminos" value="acepto">
+									Acepto los <a href="page_terms.html" class="color-green">Términos y Condiciones</a>
+								</label>
+							</div>
+							<div class="col-lg-6 text-right">
+								<button class="btn-u" type="submit">Registrar</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+
+
+
+
+
+{% endblock %}
+
+
+
+{% block javascripts %}
+
+
+    <script type="text/javascript" src="{{ asset('assets/plugins/parallax-slider/js/modernizr.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('assets/plugins/parallax-slider/js/jquery.cslider.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('assets/plugins/owl-carousel/owl-carousel/owl.carousel.js')}}"></script>    
+    <script src="{{ asset('assets/js/plugins/owl-carousel.js')}}"></script>
+    <script src="{{ asset('assets/js/plugins/style-switcher.js')}}"></script>
+    <script src="{{ asset('assets/js/plugins/parallax-slider.js')}}"></script>
+
+
+
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+
+            OwlCarousel.initOwlCarousel();
+            StyleSwitcher.initStyleSwitcher();
+            ParallaxSlider.initParallaxSlider();
+        });
+    </script>
+
+
+{% endblock %}  
